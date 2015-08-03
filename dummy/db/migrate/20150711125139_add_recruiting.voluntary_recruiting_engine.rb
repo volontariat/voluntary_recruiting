@@ -53,6 +53,9 @@ class AddRecruiting < ActiveRecord::Migration
   end
   
   def down
-    product.destroy if product = Product.where(name: 'Recruiting').first
+    product.destroy if product = Product::Recruiting.first
+    
+    drop_table :vacancies
+    drop_table :candidatures
   end
 end

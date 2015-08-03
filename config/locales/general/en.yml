@@ -1,0 +1,17 @@
+en:   
+  attributes:  
+    vacancy_id: Vacancy
+    
+  activerecord:
+    models:
+      candidature: Candidature
+      vacancy: Vacancy
+      
+    attributes:
+      vacancy:
+        name: Name 
+        limit: Limit
+        
+  home:
+    index:
+      last_vacancies: Last vacancies

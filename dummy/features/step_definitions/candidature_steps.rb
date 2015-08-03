@@ -1,6 +1,10 @@
 module CandidatureFactoryMethods
   def set_candidature_defaults(attributes)
-    attributes[:user_id] ||= @me.id unless attributes[:user] || attributes[:user_id] || !@me
+    unless attributes[:resource] || attributes[:resource_id] || !@me
+      attributes[:resource_type] ||= 'User'
+      attributes[:resource_id] ||= @me.id
+    end
+    
     attributes[:vacancy_id] ||= Vacancy.last.id unless attributes[:vacancy_id] || Vacancy.all.none?
     attributes[:offeror_id] ||= Vacancy.find(attributes[:vacancy_id]).project.user_id if attributes[:vacancy_id]
   end
@@ -11,7 +15,7 @@ module CandidatureFactoryMethods
     
     set_candidature_defaults(attributes)
     
-    @candidature = Factory(:candidature, attributes)
+    @candidature = FactoryGirl.create(:candidature, attributes) 
     
     @candidature.reload
   end
@@ -27,8 +31,7 @@ Given /^a candidature named "([^\"]*)" with state "([^\"]*)"$/ do |name,state|
   new_candidature(name, state)
 end
 
-Then /^I should see the following candidatures:$/ do |expected_table|
-  rows = find('table').all('tr')
-  table = rows.map { |r| r.all('th,td').map { |c| c.text.strip } }
-  expected_table.diff!(table)
+Given /^2 candidatures$/ do
+  FactoryGirl.create(:candidature, name: 'candidature 1', vacancy_id: Vacancy.find_by_name('vacancy 1').id, resource_type: 'User', resource_id: User.find_by_name('user').id)
+  FactoryGirl.create(:candidature, name: 'candidature 2', vacancy_id: Vacancy.find_by_name('vacancy 1').id, resource_type: 'User', resource_id: User.find_by_name('user2').id)
 end

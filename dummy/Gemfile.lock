@@ -99,8 +99,6 @@ PATH
       voluntary (~> 0.3.0)
 
 GEM
-  remote: http://gems.github.com/
-  remote: http://rubygems.org/
   remote: https://rubygems.org/
   specs:
     actionmailer (4.2.3)
