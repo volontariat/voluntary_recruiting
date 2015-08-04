@@ -10,7 +10,7 @@ class VacanciesController < ApplicationController
   respond_to :html, :js, :json
   
   def index
-    @vacancies = @project ? @project.vacancies : Vacancy.all
+    @vacancies = @project ? @project.vacancies : Vacancy.where(type: nil).all
   end
   
   def show

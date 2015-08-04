@@ -15,7 +15,15 @@ module VoluntaryRecruiting
               # eval("@#{controller}[state] = current_user.offeror_#{controller}.where(state: state).limit(5)")
               collection = controller.to_s.classify.constantize.where(
                 query, user_id: current_user.id, state: state
-              ).order('created_at DESC').limit(5)
+              )
+              
+              if controller == :vacancies
+                collection = collection.where(type: nil)
+              elsif controller == :candidatures
+                collection = collection.where(resource_type: 'User')
+              end
+              
+              collection.order('created_at DESC').limit(10)
               eval("@#{controller}[state] = collection")
             end
           end
