@@ -1,13 +1,11 @@
 <%= simple_form_for(@candidature) do |f| %>
   <%= render partial: 'shared/form/error_messages', locals: { resource: @candidature } %>
   
-  <div class="form-inputs">
-    <%= @candidature.vacancy ? f.hidden_field(:vacancy_id) : f.association(:vacancy) %> 
-    <%= f.input :name %>
-    <%= f.input :text, input_html: {style: 'width: 500px; height:300px;'} %>
-  </div>
+  <%= @candidature.vacancy ? f.hidden_field(:vacancy_id) : f.association(:vacancy) %> 
+  <%= f.input :name %>
+  <%= f.input :text, input_html: {style: 'width: 500px; height:300px;'} %>
   
-  <div class="form-actions">
+  <div class="form-group">
     <%= f.button :submit %>
   </div>
 <% end %>
