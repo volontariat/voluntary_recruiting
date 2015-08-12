@@ -16,3 +16,8 @@ en:
         accept: Accept
         deny: Deny
         quit: Quit
+        
+  activerecord:
+    attributes:
+      candidature:
+        resource_id: Resource
