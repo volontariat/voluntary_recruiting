@@ -5,6 +5,9 @@ source "https://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
+# TODO: skip yanked release 2.10.0
+gem 'net-ssh', '~> 2.9.2'
+
 # core
 gem 'rack-cors', '~> 0.2.4', require: 'rack/cors'
 gem 'thin', '~> 1.3.1', require: false
