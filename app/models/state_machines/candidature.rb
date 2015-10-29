@@ -30,12 +30,14 @@ module StateMachines::Candidature
         after_transition do |object, transition|
           case transition.to
             when 'accepted'
-              ProjectUser.find_or_create_by_project_id_and_vacancy_id_and_user_id!(
-                project_id: object.vacancy.project_id, vacancy_id: object.vacancy_id, 
-                user_id: object.resource_id
-              )
+              if object.vacancy.create_project_user?
+                ProjectUser.find_or_create_by_project_id_and_vacancy_id_and_user_id!(
+                  project_id: object.vacancy.project_id, vacancy_id: object.vacancy_id, 
+                  user_id: object.resource_id
+                )
+              end
               
-              if object.vacancy.limit == object.vacancy.candidatures.accepted.count
+              if object.vacancy.limit == object.vacancy.calculate_accepted_candidatures_amount
                 object.vacancy.close! unless object.vacancy.closed?
               end
             when 'denied'
@@ -48,7 +50,7 @@ module StateMachines::Candidature
       
       # state validations
       def candidatures_limit_not_reached
-        if vacancy.limit == vacancy.candidatures.where(state: 'accepted').count
+        if vacancy.limit == vacancy.calculate_accepted_candidatures_amount
           errors[:state] << I18n.t('activerecord.errors.models.vacancy.attributes.limit.reached')
         end
       end
