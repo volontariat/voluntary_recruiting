@@ -20,10 +20,15 @@ en:
         close: Close
         reopen: Reopen
        
-  activerecord:     
+  activerecord:
+    models:
+      vacancy: Vacancy
+         
     attributes:
       vacancy:
         limit: Limit
+        from: From
+        to: To
         
     errors:   
       models:  
