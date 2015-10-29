@@ -11,13 +11,10 @@ class Candidature < ActiveRecord::Base
 
   validates :vacancy_id, presence: true
   validates :offeror_id, presence: true
-  validates :resource_id, presence: true, uniqueness: { scope: [:resource_type, :vacancy_id] }
+  validates :resource_id, presence: true, uniqueness: { scope: [:resource_type, :vacancy_id] }, if: 'validate_resource_id?'
   #validates :name, presence: true, uniqueness: { scope: :vacancy_id }
   
   attr_accessible :vacancy, :vacancy_id, :name, :text
-  
-  extend FriendlyId
-  friendly_id :name, use: :slugged
   
   before_validation :set_offeror
   
@@ -28,6 +25,12 @@ class Candidature < ActiveRecord::Base
   
   def product
     project.product
+  end
+  
+  protected
+  
+  def validate_resource_id?
+    true
   end
   
   private
