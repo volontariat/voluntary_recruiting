@@ -7,9 +7,52 @@
   <%= f.input :text, input_html: {style: 'width: 500px; height:300px;'} %>
   <%= f.input :limit %> 
   
+  <div class="form-group string optional vacancy_timezone">
+    <label class="string optional control-label col-sm-3 control-label" for="vacancy_timezone">
+      <%= t('attributes.timezone') %>
+    </label>
+    <div class="col-sm-9">
+      <%= time_zone_select @vacancy, :timezone, nil, {}, id: 'vacancy_timezone', name: 'vacancy[timezone]', class: 'form-control' %>
+    </div>
+  </div>
+  
+  <div class="form-group string optional vacancy_from">
+    <label class="string optional control-label col-sm-3 control-label" for="vacancy_from">
+      <%= t('activerecord.attributes.vacancy.from') %>
+    </label>
+    <div class="col-sm-9">
+      <div class="datetime_picker" class="input-append date">
+        <%= text_field_tag :from_raw, @vacancy.from_raw, name: 'vacancy[from_raw]', 'data-format' => 'yyyy-MM-dd hh:mm:ss' %>
+        <span class="add-on">
+          <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+          </i>
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-group string optional vacancy_to">
+    <label class="string optional control-label col-sm-3 control-label" for="vacancy_to">
+      <%= t('activerecord.attributes.vacancy.to') %>
+    </label>
+    <div class="col-sm-9">
+      <div class="datetime_picker" class="input-append date">
+        <%= text_field_tag :to_raw, @vacancy.to_raw, name: 'vacancy[to_raw]', 'data-format' => 'yyyy-MM-dd hh:mm:ss' %>
+        <span class="add-on">
+          <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+          </i>
+        </span>
+      </div>
+    </div>
+  </div>
+
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
       <%= f.button :submit %>
     </div>
   </div>
+<% end %>
+
+<% content_for :document_ready do %>
+  $('#vacancy_timezone').val('<%= @vacancy.timezone %>')
 <% end %>
