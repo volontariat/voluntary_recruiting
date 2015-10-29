@@ -34,6 +34,7 @@ class CandidaturesController < ApplicationController
     @candidature = Candidature.new(params[:candidature])
     @candidature.resource_type = 'User'
     @candidature.resource_id = current_user.id
+    @candidature.user_id = current_user.id
     
     if @candidature.save
       redirect_to @candidature, notice: t('general.form.successfully_created')
@@ -75,10 +76,10 @@ class CandidaturesController < ApplicationController
   private
   
   def find_candidature
-    @candidature = Candidature.includes(:vacancy, :resource, :comments).friendly.find(params[:id])
+    @candidature = Candidature.includes(:vacancy, :resource, :comments).find(params[:id])
   end
   
   def find_vacancy
-    @vacancy = params[:vacancy_id].present? ? Vacancy.friendly.find(params[:vacancy_id]) : nil
+    @vacancy = params[:vacancy_id].present? ? Vacancy.find(params[:vacancy_id]) : nil
   end
 end
