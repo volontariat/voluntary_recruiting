@@ -23,6 +23,7 @@ FactoryGirl.define do
     text Faker::Lorem.sentences(20).join(' ')
     limit 1
     state 'open'
+    resource_type 'User'
   end
   
   factory :candidature do

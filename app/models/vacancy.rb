@@ -35,7 +35,7 @@ class Vacancy < ActiveRecord::Base
   end
   
   def from_raw=(value)
-    if timezone && value
+    if timezone && value.present?
       datetime = Time.zone.parse(value)
       args = [
         datetime.strftime('%Y').to_i, datetime.strftime('%m').to_i, datetime.strftime('%d').to_i,
@@ -52,7 +52,7 @@ class Vacancy < ActiveRecord::Base
   end
   
   def to_raw=(value)
-    if timezone && value
+    if timezone && value.present?
       datetime = Time.zone.parse(value)
       args = [
         datetime.strftime('%Y').to_i, datetime.strftime('%m').to_i, datetime.strftime('%d').to_i,
