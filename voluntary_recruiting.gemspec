@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ['gawlista@gmail.com']
   s.homepage    = 'http://Volontari.at'
   s.summary     = 'Recruiting plugin for crowdsourcing management system voluntary.'
-  s.description = 'Recruiting plugin for voluntary gem.'
+  s.description = "#Crowdsourcing gem voluntary's recruiting plugin: http://bit.ly/vrec-0-1-0"
   s.license     = 'MIT'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']

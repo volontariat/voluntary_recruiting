@@ -26,7 +26,7 @@ GIT
 PATH
   remote: ../../voluntary
   specs:
-    voluntary (0.6.0)
+    voluntary (0.7.0)
       active_model_serializers (~> 0.9.3)
       activerecord-deprecated_finders (~> 1.0.3)
       activerecord-import (~> 0.4.1)
@@ -98,8 +98,8 @@ PATH
 PATH
   remote: /Users/gawlim/workspace/voluntary/voluntary_recruiting
   specs:
-    voluntary_recruiting (0.0.1)
-      voluntary (~> 0.5)
+    voluntary_recruiting (0.1.0)
+      voluntary (~> 0.7)
 
 GEM
   remote: https://rubygems.org/
@@ -388,19 +388,19 @@ GEM
       rack (~> 1.0)
     omniauth-facebook (2.0.1)
       omniauth-oauth2 (~> 1.2)
-    omniauth-google-oauth2 (0.2.8)
+    omniauth-google-oauth2 (0.2.9)
       addressable (~> 2.3)
       jwt (~> 1.0)
       multi_json (~> 1.3)
       omniauth (>= 1.1.1)
-      omniauth-oauth2 (>= 1.1.1)
+      omniauth-oauth2 (~> 1.3.1)
     omniauth-lastfm (0.0.6)
       omniauth-oauth (~> 1.0)
       rest-client (>= 1.6.6, < 1.8)
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
-    omniauth-oauth2 (1.4.0)
+    omniauth-oauth2 (1.3.1)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     optionable (0.2.0)
