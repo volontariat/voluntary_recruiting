@@ -25,6 +25,7 @@ class VacanciesController < ApplicationController
   
   def create
     @vacancy = Vacancy.new(params[:vacancy])
+    @vacancy.resource_type = 'User'
     
     if @vacancy.project.user_id == current_user.id
       @vacancy.do_open
@@ -41,11 +42,11 @@ class VacanciesController < ApplicationController
   end
   
   def edit
-    @vacancy = Vacancy.friendly.find(params[:id])
+    @vacancy = Vacancy.find(params[:id])
   end
   
   def update
-    @vacancy = Vacancy.friendly.find(params[:id])
+    @vacancy = Vacancy.find(params[:id])
     
     if @vacancy.update_attributes(params[:vacancy])
       redirect_to @vacancy, notice: t('general.form.successfully_updated')
@@ -55,7 +56,7 @@ class VacanciesController < ApplicationController
   end
 
   def destroy
-    @vacancy = Vacancy.friendly.find(params[:id])
+    @vacancy = Vacancy.find(params[:id])
     @vacancy.destroy
     redirect_to vacancies_url, notice: t('general.form.destroyed')
   end
@@ -79,7 +80,7 @@ class VacanciesController < ApplicationController
     
     @vacancy = Vacancy
     @vacancy = @vacancy.includes(:project, :candidatures, :comments) if action_name == 'show'
-    @vacancy = @vacancy.friendly.find(params[:id])
+    @vacancy = @vacancy.find(params[:id])
   end
   
   def find_project
